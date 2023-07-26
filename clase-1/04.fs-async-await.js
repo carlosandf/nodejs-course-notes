@@ -18,7 +18,9 @@ async function init () {
   console.log('Segundo texto:', secondText)
 }
 
+console.log('*** Antes de llamar la función')
 init()
+console.log('*** Despues de llamar la función')
 
 // IIFE - Inmediatly Invoked Function Expression
 // ;(

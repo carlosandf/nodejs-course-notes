@@ -15,3 +15,22 @@ console.log('**--> Hacer cosas mientras lee el archivo...**')
 console.log('**Leyendo el segundo archivo...**')
 const secondText = await readFile('./file2.txt', 'utf-8')
 console.log('Segundo texto:', secondText)
+
+// console.log('**Leyendo el primer archivo...**')
+// async function readFirst () {
+//   const text = await readFile('./file.txt', 'utf-8')
+//   console.log('primer texto:', text)
+// }
+// readFirst()
+
+// console.log('**--> Hacer cosas mientras lee el archivo...**')
+
+// console.log('**Leyendo el segundo archivo...**')
+
+// async function readSecond () {
+//   const secondText = await readFile('./file2.txt', 'utf-8')
+//   console.log('Segundo texto:', secondText)
+// }
+// readSecond()
+
+// console.log('**Terminando de leer')

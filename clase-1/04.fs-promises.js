@@ -19,3 +19,5 @@ fs.readFile('./file2.txt', 'utf-8')
   .then(text => {
     console.log('Segundo texto:', text)
   })
+
+console.log('**Terminando de leer')
