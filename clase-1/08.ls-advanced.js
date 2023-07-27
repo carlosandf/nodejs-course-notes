@@ -32,7 +32,11 @@ async function ls (folder) {
     const fileSize = stats.size.toString()
     const fileModified = stats.mtime.toLocaleDateString()
 
-    return pc[isDirectory ? 'blue' : 'gray'](`${file.padEnd(maxLengthString + 5)} ${fileSize.padStart(10)} ${fileModified}`)
+    const fileName = isDirectory
+      ? pc.bold(pc.blue(file.padEnd(maxLengthString + 5)))
+      : pc.magenta(file.padEnd(maxLengthString + 5))
+
+    return `${fileName} ${pc.green(fileSize.padStart(10))} ${pc.yellow(fileModified)}`
   })
 
   const filesInfo = await Promise.all(filesPromises)
