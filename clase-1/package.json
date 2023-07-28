@@ -15,6 +15,12 @@
   "author": "Carlos Florez <carlos.andres.ff2912@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "picocolors": "^1.0.0"
+    "picocolors": "1.0.0"
+  },
+  "devDependencies": {
+    "semistandard": "17.0.0"
+  },
+  "eslintConfig": {
+    "extends": "semistandard"
   }
 }
