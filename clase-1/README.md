@@ -6,8 +6,6 @@ En JavaScript existe un objeto global, en el navegador se conoce como ***window*
 
 ---
 
-
-
 ### Modulos
 
 En JavaScript existen dos formas de utilizar modulos, la forma clasica (que es la que mas te encontrarás en documentaciones o ejemplos), es **CommonJS**, y la forma mas actual y la recomendada para proyectos nuevos, **ESModules** (EcmaScript Modules).
@@ -62,18 +60,16 @@ Como te pudiste dar cuenta, cambiamos la extensión del archivo de `.js` a `.mjs
 
 ---
 
-
-
 ### Modulos nativos de node
 
 En Node.js, los módulos nativos son una parte esencial de su sistema de módulos que permite a los desarrolladores acceder a funcionalidades específicas del sistema operativo y del entorno del servidor directamente desde el código JavaScript. Estos módulos están incluidos en la instalación predeterminada de Node.js y no requieren una instalación adicional.
 
 Los módulos nativos son también conocidos como "módulos principales" o "módulos integrados" y proporcionan una variedad de funcionalidades para tareas comunes, como manipulación de archivos, manejo de rutas, creación de servidores web, y más. Algunos ejemplos de módulos nativos en Node.js son:
 
-1. **fs** : Este módulo permite trabajar con el sistema de archivos del sistema operativo, permitiendo la lectura y escritura de archivos, creación de directorios, entre otras operaciones.
-2. **http** : Proporciona las herramientas necesarias para crear un servidor web y realizar solicitudes HTTP.
+1. **os** : Permite acceder a información del sistema operativo, como la arquitectura del procesador, memoria disponible y mucho más.
+2. **fs** : Este módulo permite trabajar con el sistema de archivos del sistema operativo, permitiendo la lectura y escritura de archivos, creación de directorios, entre otras operaciones.
 3. **path** : Facilita la manipulación de rutas de archivos y directorios, haciendo que sea más fácil trabajar con ubicaciones de archivos independientemente del sistema operativo.
-4. **os** : Permite acceder a información del sistema operativo, como la arquitectura del procesador, memoria disponible y mucho más.
+4. **http** : Proporciona las herramientas necesarias para crear un servidor web y realizar solicitudes HTTP.
 5. **util** : Ofrece diversas utilidades para facilitar la escritura de código, como funciones de depuración, promisificación y herencia de objetos.
 6. **events** : Implementa el patrón de diseño EventEmitter para facilitar la comunicación entre diferentes partes de una aplicación a través de eventos.
 
@@ -102,9 +98,86 @@ De esta manera, podrás acceder a las funcionalidades proporcionadas por el mód
 
 Es importante mencionar que además de los módulos nativos, Node.js también cuenta con un amplio ecosistema de módulos de terceros disponibles a través del sistema de gestión de paquetes npm, que extienden aún más la funcionalidad y permiten a los desarrolladores reutilizar código en sus proyectos.
 
+##### os (Operative System)
+
+...
+
+##### fs (File System)
+
+...
+
+##### path
+
+El módulo nativo `path` en Node.js proporciona utilidades para trabajar con rutas de archivos y directorios de manera agnóstica al sistema operativo. Esto significa que puedes manipular rutas de archivos de forma coherente, independientemente de si estás en Windows, macOS o Linux.
+
+Algunas de las funciones más utilizadas del módulo `path` son:
+
+1. **`path.join([...paths])`**: Une segmentos de ruta en una única ruta. Esta función toma varios argumentos de ruta y los concatena utilizando el separador de ruta adecuado para el sistema operativo.
+
+   ```javascript
+   const path = require('path');
+
+   const createdPath = path.join('/user', 'documents', 'file.txt')
+
+   console.log(createdPath); // Output (example on a Unix-like OS): /user/documents/file.txt
+   ```
+2. **`path.resolve([...paths])`**: Resuelve la ruta absoluta de una secuencia de segmentos de ruta. Si se proporciona una ruta absoluta, la devuelve tal cual. Si se proporciona una ruta relativa, la resuelve en relación con el directorio de trabajo actual.
+
+   ```javascript
+   const path = require('path');
+
+   const absolutePath = path.resolve('folder', 'subfolder', 'file.txt');
+
+   console.log(absolutePath); // Output (example on a Unix-like OS): /home/user/folder/subfolder/file.txt
+   ```
+3. **`path.basename(path[, ext])`**: Devuelve el último segmento de una ruta, que generalmente corresponde al nombre del archivo. Si se proporciona la extensión `ext`, esta se eliminará del nombre del archivo si coincide.
+
+   ```javascript
+   const path = require('path');
+
+   const filePath = '/user/documents/file.txt';
+
+   console.log(path.basename(filePath)); // Output: file.txt
+   ```
+4. **`path.dirname(path)`**: Devuelve el directorio de una ruta.
+
+   ```javascript
+   const path = require('path');
+
+   const filePath = '/user/documents/file.txt';
+
+   console.log(path.dirname(filePath));  // Output: /user/documents
+   ```
+5. **`path.extname(path)`**: Devuelve la extensión de un archivo en una ruta, incluido el punto.
+
+   ```javascript
+   const path = require('path');
+
+   const filePath = '/user/documents/file.txt';
+
+   console.log(path.extname(filePath));  // Output: .txt
+   ```
+6. **`path.parse(path)`**: Devuelve un objeto con las propiedades de una ruta descompuesta en sus partes constituyentes (directorio, nombre del archivo, extensión, etc.).
+
+   ```javascript
+   const path = require('path');
+
+   const filePath = '/user/documents/file.txt';
+
+   const parsedPath = path.parse(filePath);
+   console.log(parsedPath);
+   /* Output:
+   {
+     root: '/',
+     dir: '/user/documents',
+     base: 'file.txt',
+     ext: '.txt',
+     name: 'file'
+   }
+   */
+   ```
+
 ---
-
-
 
 ### Asincronismo
 
@@ -133,11 +206,8 @@ En JavaScript, el asincronismo se logra principalmente a través de callbacks, p
 
    console.log('**Terminando de leer')
    ```
-
    *En este ejemplo ejecutamos el metodo `readFile` del modulo nativo `fs` (fileSystem), este proceso es asincrono, y en el tercer parametro recibe una función (callback), que se esjecutará cuando el archivo haya sido leido.*
-
-
-1. **Promesas:** Las promesas son objetos que representan un valor que puede estar disponible ahora, en el futuro o nunca. Permiten encadenar operaciones asincrónicas y manejar el éxito o el error de manera más estructurada. Las promesas tienen métodos como `then()` y `catch()` para manejar los resultados.
+2. **Promesas:** Las promesas son objetos que representan un valor que puede estar disponible ahora, en el futuro o nunca. Permiten encadenar operaciones asincrónicas y manejar el éxito o el error de manera más estructurada. Las promesas tienen métodos como `then()` y `catch()` para manejar los resultados.
 
    ```javascript
    const fs = require('node:fs/promises')
@@ -157,11 +227,8 @@ En JavaScript, el asincronismo se logra principalmente a través de callbacks, p
      })
    console.log('**Terminando de leer')
    ```
-
    *En este ejemplo estamos realizando la misma acción que en el ejemplo anterior, con la diferencia de que ahora, estamos requiriendo el modulo `node:fs/promises`, esto para poder utilizar la sintaxis de promesas. No hay mucha diferencia a ecepción de que ahora no le estamos pasando una función como parametro, sino que estamos utilizando `.then()`, esto hace parte de la sintaxis de las promesas, y basicamente lo que hace es recibir un callback que se ejecuta cuando se haya resolvido la promesa exitosamente.*
-
-
-1. **Async/Await:** Esta es una sintaxis más moderna y legible para trabajar con código asíncrono. Las funciones marcadas con la palabra clave `async` devuelven automáticamente una promesa. Dentro de las funciones `async`, puedes usar la palabra clave `await` para pausar la ejecución hasta que una promesa se resuelva.
+3. **Async/Await:** Esta es una sintaxis más moderna y legible para trabajar con código asíncrono. Las funciones marcadas con la palabra clave `async` devuelven automáticamente una promesa. Dentro de las funciones `async`, puedes usar la palabra clave `await` para pausar la ejecución hasta que una promesa se resuelva.
 
    ```javascript
    const { readFile } = require('node:fs/promises')
