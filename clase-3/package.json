@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch ./index.js",
+    "dev": "nodemon ./index.js",
     "start": "ENV=PROD node ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,9 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "4.18.2"
+    "express": "4.18.2",
+    "zod": "3.21.4"
   },
   "devDependencies": {
+    "nodemon": "3.0.1",
     "semistandard": "17.0.0"
   },
   "eslintConfig": {
