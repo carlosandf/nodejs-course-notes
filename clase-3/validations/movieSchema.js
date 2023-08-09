@@ -37,6 +37,11 @@ function validateMovie (object) {
   return movieSchema.safeParseAsync(object);
 }
 
+function validatePartialMovie (object) {
+  return movieSchema.partial().safeParseAsync(object);
+}
+
 module.exports = {
-  validateMovie
+  validateMovie,
+  validatePartialMovie
 };

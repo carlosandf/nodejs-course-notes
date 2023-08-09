@@ -1,7 +1,7 @@
 const express = require('express');
 const crypto = require('node:crypto');
 const movies = require('./movies.json');
-const { validateMovie } = require('./validations/movieSchema.js');
+const { validateMovie, validatePartialMovie } = require('./validations/movieSchema.js');
 
 const app = express();
 app.disable('x-powered-by');
@@ -55,7 +55,31 @@ app.post('/movies', async (req, res) => {
   res.status(201).json(newMovie);
 });
 
-// TODO: Acualizar una pelicula -> Pending
+// Actualizar una pelicula
+app.patch('/movies/:id', async (req, res) => {
+  const result = await validatePartialMovie(req.params);
+
+  if (!result.success) {
+    return res.status(400).json({ error: JSON.parse(result.error.message) });
+  }
+
+  const { id } = req.params;
+  const movieIndex = movies.findIndex(movie => movie.id === id);
+
+  if (movieIndex === -1) {
+    return res.status(404).json({ message: 'Movie not found' });
+  }
+
+  const updateMovie = {
+    ...movies[movieIndex],
+    ...result.data
+  };
+
+  console.log({ updateMovie });
+  movies[movieIndex] = updateMovie;
+
+  res.status(200).json(updateMovie);
+});
 
 app.listen(PORT, () => {
   if (process.env.ENV === 'PROD') {
