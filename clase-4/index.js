@@ -1,6 +1,7 @@
 import express from 'express';
 import { randomUUID } from 'node:crypto';
 import { validateMovie, validatePartialMovie } from './validations/movieSchema.js';
+
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const movies = require('./movies.json');
