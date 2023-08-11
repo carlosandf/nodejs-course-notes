@@ -30,5 +30,8 @@ PATCH http://localhost:12345/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
 Content-Type: application/json
 
 {
-  "year": "2009"
+  "year": 2009
 }
+
+### Eliminar una pelicula
+DELETE http://localhost:12345/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
