@@ -1,4 +1,6 @@
+import crypto from 'node:crypto';
 import { readJSON } from '../../utils/index.js';
+
 const movies = readJSON('../movies.json');
 
 export class MovieModel {
