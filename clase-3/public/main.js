@@ -5,7 +5,7 @@ function CardMovie (movie) {
     <article class="card" data-id="${movie.id}">
     <button class="delete-button">+</button>
       <figure class="movie-img">
-        <img src="${movie.poster}" alt="${movie.title}"/>
+        <img title="${movie.title}" loading="lazy" src="${movie.poster}" alt="${movie.title}"/>
       </figure>
     </article>
   `);
