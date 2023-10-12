@@ -24,12 +24,12 @@ const movieSchema = zod.object({
         'Horror',
         'Thriller',
         'Sci-Fi'
-      ],
-      {
-        required_error: 'Movie genre is required',
-        invalid_type_error: 'Movie genre must be an arra of enum Gente'
-      }
-    )
+      ]
+    ),
+    {
+      required_error: 'Movie genre is required',
+      invalid_type_error: 'Movie genre must be an arra of enum Gente'
+    }
   )
 });
 
